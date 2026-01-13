@@ -68,14 +68,9 @@ final class CityInfoTableViewCell: UITableViewCell {
         titleLabel.text = "\(city.city_name) · \(city.city_english_name)"
         subtitleLabel.text = city.city_explain
         
-        // placeholder 설정
-        let placeholder = UIImage(
-            systemName: "photo",
-            withConfiguration: UIImage.SymbolConfiguration(pointSize: 24, weight: .medium)
-        )
+        let placeholder = UIImage(named: "6640187")
         
         backgroudImageView.backgroundColor = .systemGray5
-        backgroudImageView.tintColor = .systemGray3
         
         guard let url = URL(string: city.city_image) else {
             backgroudImageView.image = placeholder

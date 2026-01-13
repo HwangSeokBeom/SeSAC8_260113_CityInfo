@@ -102,12 +102,21 @@ final class CityInfoViewController: UIViewController {
     @IBAction func tapGestureClicked(_ sender: UITapGestureRecognizer) {
         view.endEditing(true)
     }
+    
+    @IBAction func searchTextFieldEditingChanged(_ sender: UITextField) {
+        applyFilter()
+    }
+    
+    @IBAction func segmentedConrolClicked(_ sender: UISegmentedControl) {
+        applyFilter()
+        sender.resignFirstResponder()
+    }
 }
 
 extension CityInfoViewController: UITableViewDelegate, UITableViewDataSource  {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        100
+        filteredCities.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
