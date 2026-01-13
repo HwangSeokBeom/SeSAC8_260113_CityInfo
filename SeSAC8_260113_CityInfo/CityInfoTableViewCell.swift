@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CityInfoTableViewCell: UITableViewCell {
+final class CityInfoTableViewCell: UITableViewCell {
     
     static let identifier = "CityInfoTableViewCell"
 
