@@ -10,6 +10,7 @@ import UIKit
 final class CityInfoViewController: UIViewController {
     
     @IBOutlet var titleLabel: UILabel!
+    @IBOutlet var searchTextField: UITextField!
     @IBOutlet var segmentedControl: UISegmentedControl!
     @IBOutlet var tableView: UITableView!
     
@@ -31,6 +32,11 @@ final class CityInfoViewController: UIViewController {
         titleLabel.text = "인기 도시"
         titleLabel.textAlignment = .center
         titleLabel.font = .systemFont(ofSize: 18, weight: .bold)
+        
+        searchTextField.placeholder = "도시명을 검색하세요"
+        searchTextField.backgroundColor = UIColor.systemGray6
+        searchTextField.layer.cornerRadius = 8
+        searchTextField.layer.masksToBounds = true
         
         segmentedControl.layer.cornerRadius = segmentedControl.bounds.height / 2
         segmentedControl.layer.masksToBounds = true
