@@ -13,7 +13,8 @@ final class CityInfoViewController: UIViewController {
     @IBOutlet var searchTextField: UITextField!
     @IBOutlet var segmentedControl: UISegmentedControl!
     @IBOutlet var tableView: UITableView!
-    
+
+    @IBOutlet var tapGesture: UITapGestureRecognizer!
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -62,6 +63,13 @@ final class CityInfoViewController: UIViewController {
             .font: UIFont.systemFont(ofSize: 14, weight: .bold)
         ]
         segmentedControl.setTitleTextAttributes(selectedAttrs, for: .selected)
+    }
+    
+    @IBAction func searchTextFieldDidEndOnExit(_ sender: UITextField) {
+    }
+    
+    @IBAction func tapGestureClicked(_ sender: UITapGestureRecognizer) {
+        view.endEditing(true)
     }
 }
 

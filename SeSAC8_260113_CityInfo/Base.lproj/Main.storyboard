@@ -50,10 +50,14 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="searchTextFieldDidEndOnExit:" destination="BYZ-38-t0r" eventType="editingDidEndOnExit" id="F4E-bt-k0I"/>
+                                </connections>
                             </textField>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="LaC-qh-KO4" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="3eL-pU-7ix"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="LaC-qh-KO4" secondAttribute="trailing" id="5jT-Ha-Mev"/>
@@ -72,6 +76,9 @@
                             <constraint firstItem="ENr-Nq-09P" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="vZk-Fh-st0"/>
                             <constraint firstItem="YXD-Ca-mXx" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="zjC-bQ-Lnx"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="Nr4-Xj-DR6" appends="YES" id="Jtc-Yz-SiD"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="searchTextField" destination="S3Z-Od-HFe" id="JrJ-8F-AO4"/>
@@ -81,6 +88,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="Nr4-Xj-DR6">
+                    <connections>
+                        <action selector="tapGestureClicked:" destination="BYZ-38-t0r" id="UGg-sa-xQ1"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-48" y="94"/>
         </scene>
