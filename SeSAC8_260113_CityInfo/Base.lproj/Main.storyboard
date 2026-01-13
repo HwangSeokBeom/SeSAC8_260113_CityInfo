@@ -40,7 +40,7 @@
                                 </segments>
                             </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="sDz-aS-jnH">
-                                <rect key="frame" x="20" y="220" width="353" height="564"/>
+                                <rect key="frame" x="0.0" y="220" width="393" height="564"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                         </subviews>
@@ -50,12 +50,12 @@
                             <constraint firstItem="LaC-qh-KO4" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="3eL-pU-7ix"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="LaC-qh-KO4" secondAttribute="trailing" id="5jT-Ha-Mev"/>
                             <constraint firstItem="YXD-Ca-mXx" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="9vJ-Dr-QVC"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="sDz-aS-jnH" secondAttribute="trailing" constant="20" id="BnA-E6-rP7"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="sDz-aS-jnH" secondAttribute="trailing" id="BnA-E6-rP7"/>
                             <constraint firstItem="sDz-aS-jnH" firstAttribute="top" secondItem="ENr-Nq-09P" secondAttribute="bottom" constant="10" id="CsN-Dw-1Tg"/>
                             <constraint firstItem="ENr-Nq-09P" firstAttribute="top" secondItem="LaC-qh-KO4" secondAttribute="bottom" constant="20" id="FkM-M6-Ox6"/>
                             <constraint firstItem="LaC-qh-KO4" firstAttribute="top" secondItem="YXD-Ca-mXx" secondAttribute="bottom" constant="10" id="LnF-tR-OXy"/>
                             <constraint firstItem="ENr-Nq-09P" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="Q8Y-zW-RM3"/>
-                            <constraint firstItem="sDz-aS-jnH" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="kUf-F8-tBH"/>
+                            <constraint firstItem="sDz-aS-jnH" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="kUf-F8-tBH"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ENr-Nq-09P" secondAttribute="trailing" constant="20" id="mO0-DM-Miz"/>
                             <constraint firstAttribute="trailing" secondItem="YXD-Ca-mXx" secondAttribute="trailing" constant="20" id="rMB-Pu-hXS"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="sDz-aS-jnH" secondAttribute="bottom" id="yPr-4B-YNc"/>
