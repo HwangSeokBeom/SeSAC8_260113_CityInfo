@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 final class CityInfoTableViewCell: UITableViewCell {
     
@@ -19,12 +20,13 @@ final class CityInfoTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
         setupUI()
+        backgroudImageView.kf.indicatorType = .activity
     }
     
     override func prepareForReuse() {
         super.prepareForReuse()
+        backgroudImageView.kf.cancelDownloadTask()
         backgroudImageView.image = nil
         titleLabel.text = nil
         subtitleLabel.text = nil
@@ -54,7 +56,7 @@ final class CityInfoTableViewCell: UITableViewCell {
         subtitleLabel.font = .systemFont(ofSize: 14, weight: .regular)
         subtitleLabel.numberOfLines = 1
         
-        // 셀 그림자 
+        // 셀 그림자
         contentView.layer.masksToBounds = false
         layer.shadowColor = UIColor.black.cgColor
         layer.shadowOpacity = 0.15
@@ -62,10 +64,31 @@ final class CityInfoTableViewCell: UITableViewCell {
         layer.shadowOffset = CGSize(width: 0, height: 4)
     }
     
-    func configure(image: UIImage?, title: String, subtitle: String) {
-        backgroudImageView.image = image
-        titleLabel.text = title
-        subtitleLabel.text = subtitle
+    func configure(with city: City) {
+        titleLabel.text = "\(city.city_name) · \(city.city_english_name)"
+        subtitleLabel.text = city.city_explain
+        
+        // placeholder 설정
+        let placeholder = UIImage(
+            systemName: "photo",
+            withConfiguration: UIImage.SymbolConfiguration(pointSize: 24, weight: .medium)
+        )
+        
+        backgroudImageView.backgroundColor = .systemGray5
+        backgroudImageView.tintColor = .systemGray3
+        
+        guard let url = URL(string: city.city_image) else {
+            backgroudImageView.image = placeholder
+            return
+        }
+        
+        backgroudImageView.kf.setImage(
+            with: url,
+            placeholder: placeholder,
+            options: [
+                .transition(.fade(0.2)),
+                .cacheOriginalImage
+            ]
+        )
     }
-    
 }

@@ -13,8 +13,10 @@ final class CityInfoViewController: UIViewController {
     @IBOutlet var searchTextField: UITextField!
     @IBOutlet var segmentedControl: UISegmentedControl!
     @IBOutlet var tableView: UITableView!
-
-    @IBOutlet var tapGesture: UITapGestureRecognizer!
+    
+    private let cityInfo = CityInfo()
+    private var filteredCities: [City] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -26,6 +28,7 @@ final class CityInfoViewController: UIViewController {
         tableView.register(xib, forCellReuseIdentifier: CityInfoTableViewCell.identifier)
         
         setupUI()
+        applyFilter()
     }
     
     private func setupUI () {
@@ -46,7 +49,7 @@ final class CityInfoViewController: UIViewController {
             segmentedControl.insertSegment(withTitle: title, at: index, animated: false)
         }
         segmentedControl.selectedSegmentIndex = 0
-    
+        
         segmentedControl.backgroundColor = UIColor.systemGray6
         segmentedControl.selectedSegmentTintColor = .white
         
@@ -65,6 +68,34 @@ final class CityInfoViewController: UIViewController {
         segmentedControl.setTitleTextAttributes(selectedAttrs, for: .selected)
     }
     
+    private func applyFilter() {
+        let keyword = searchTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+        
+        // 1) 세그먼트별 기본 리스트
+        let baseList: [City]
+        switch segmentedControl.selectedSegmentIndex {
+        case 1: // 국내
+            baseList = cityInfo.domesticCities
+        case 2: // 해외
+            baseList = cityInfo.internationalCities
+        default: // 모두
+            baseList = cityInfo.city
+        }
+        
+        // 2) 검색어 필터 적용
+        if keyword.isEmpty {
+            filteredCities = baseList
+        } else {
+            filteredCities = baseList.filter {
+                $0.city_name.contains(keyword) ||
+                $0.city_english_name.lowercased().contains(keyword.lowercased()) ||
+                $0.city_explain.contains(keyword)
+            }
+        }
+        
+        tableView.reloadData()
+    }
+    
     @IBAction func searchTextFieldDidEndOnExit(_ sender: UITextField) {
     }
     
@@ -81,6 +112,9 @@ extension CityInfoViewController: UITableViewDelegate, UITableViewDataSource  {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CityInfoTableViewCell.identifier, for: indexPath) as! CityInfoTableViewCell
+        
+        let city = filteredCities[indexPath.row]
+            cell.configure(with: city)
         
         return cell
     }
