@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CityInfo2ViewController: UIViewController {
+final class CityInfo2ViewController: UIViewController {
     
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var searchTextField: UITextField!
@@ -17,8 +17,14 @@ class CityInfo2ViewController: UIViewController {
     private let cityInfo = CityInfo()
     private var filteredCities: [City] = []
     
+    private var currentFilter: CityFilter {
+        return CityFilter(rawValue: segmentedControl.selectedSegmentIndex) ?? .all
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        collectionView.keyboardDismissMode = .onDrag
         
         collectionView.backgroundColor = .clear
         collectionView.dataSource = self
@@ -39,6 +45,11 @@ class CityInfo2ViewController: UIViewController {
         applyFilter()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.isNavigationBarHidden = true
+    }
+    
     private func setupUI () {
         
         titleLabel.text = "인기 도시"
@@ -53,10 +64,11 @@ class CityInfo2ViewController: UIViewController {
         segmentedControl.layer.cornerRadius = segmentedControl.bounds.height / 2
         segmentedControl.layer.masksToBounds = true
         segmentedControl.removeAllSegments()
-        ["모두", "국내", "해외"].enumerated().forEach { index, title in
-            segmentedControl.insertSegment(withTitle: title, at: index, animated: false)
+        segmentedControl.removeAllSegments()
+        [CityFilter.all, .domestic, .international].forEach { filter in
+            segmentedControl.insertSegment(withTitle: filter.title, at: filter.rawValue, animated: false)
         }
-        segmentedControl.selectedSegmentIndex = 0
+        segmentedControl.selectedSegmentIndex = CityFilter.all.rawValue
         
         segmentedControl.backgroundColor = UIColor.systemGray6
         segmentedControl.selectedSegmentTintColor = .white
@@ -81,12 +93,13 @@ class CityInfo2ViewController: UIViewController {
         
         // 1) 세그먼트별 기본 리스트
         let baseList: [City]
-        switch segmentedControl.selectedSegmentIndex {
-        case 1: // 국내
+        
+        switch currentFilter {
+        case .domestic:
             baseList = cityInfo.domesticCities
-        case 2: // 해외
+        case .international:
             baseList = cityInfo.internationalCities
-        default: // 모두
+        case .all:
             baseList = cityInfo.city
         }
         
@@ -105,10 +118,6 @@ class CityInfo2ViewController: UIViewController {
     }
     
     @IBAction func searchTextFieldDidEndOnExit(_ sender: UITextField) {
-        view.endEditing(true)
-    }
-    
-    @IBAction func tapGestureClicked(_ sender: UITapGestureRecognizer) {
         view.endEditing(true)
     }
     
@@ -152,5 +161,36 @@ extension CityInfo2ViewController: UICollectionViewDataSource, UICollectionViewD
         let width = collectionView.bounds.width / 2
         let height = width + 50
         return CGSize(width: width, height: height)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let city = filteredCities[indexPath.item]
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let detailVC = storyboard.instantiateViewController(
+            withIdentifier: "CityInfo2DetailViewController"
+        ) as? CityInfo2DetailViewController else { return }
+        
+        detailVC.city = city
+        
+        switch currentFilter {
+        case .domestic:
+            // 국내 -> push
+            navigationController?.pushViewController(detailVC, animated: true)
+            
+        case .international:
+            // 해외 -> present
+            detailVC.modalPresentationStyle = .formSheet
+            present(detailVC, animated: true)
+            
+        case .all:
+            // 모두 탭일 때 city 기준으로 분기
+            if cityInfo.domesticCities.contains(where: { $0.city_name == city.city_name }) {
+                navigationController?.pushViewController(detailVC, animated: true)
+            } else {
+                detailVC.modalPresentationStyle = .formSheet
+                present(detailVC, animated: true)
+            }
+        }
     }
 }
