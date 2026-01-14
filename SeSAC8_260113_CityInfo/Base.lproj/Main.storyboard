@@ -131,11 +131,14 @@
                                     <segment title="First"/>
                                     <segment title="Second"/>
                                 </segments>
+                                <connections>
+                                    <action selector="segmentedConrolClicked:" destination="dLd-zz-9By" eventType="valueChanged" id="Wbs-uj-c1c"/>
+                                </connections>
                             </segmentedControl>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="fPW-Jm-QrA">
                                 <rect key="frame" x="0.0" y="260" width="393" height="524"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="dc0-BP-GlJ">
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="dc0-BP-GlJ">
                                     <size key="itemSize" width="128" height="128"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -159,10 +162,15 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="searchTextFieldDidEndOnExit:" destination="dLd-zz-9By" eventType="editingDidEnd" id="nn1-Zr-krU"/>
+                                    <action selector="searchTextFieldEditingChanged:" destination="dLd-zz-9By" eventType="editingDidEnd" id="id7-df-7BM"/>
+                                </connections>
                             </textField>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="1yc-FH-ojE"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="1yc-FH-ojE" firstAttribute="trailing" secondItem="V73-Ks-ro7" secondAttribute="trailing" constant="20" id="18X-sx-awD"/>
                             <constraint firstItem="avf-Tf-jx8" firstAttribute="top" secondItem="1yc-FH-ojE" secondAttribute="top" constant="10" id="3nQ-TF-YNe"/>
@@ -181,6 +189,9 @@
                             <constraint firstItem="1yc-FH-ojE" firstAttribute="bottom" secondItem="fPW-Jm-QrA" secondAttribute="bottom" id="wLw-o0-CAe"/>
                             <constraint firstItem="avf-Tf-jx8" firstAttribute="leading" secondItem="1yc-FH-ojE" secondAttribute="leading" constant="20" id="y7K-I2-Vbb"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="LK1-04-mlP" appends="YES" id="G0H-MF-CQC"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="fPW-Jm-QrA" id="raU-H4-78B"/>
@@ -190,6 +201,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fdJ-0d-Ikm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="LK1-04-mlP">
+                    <connections>
+                        <action selector="tapGestureClicked:" destination="dLd-zz-9By" id="Aiz-lH-KPx"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="808" y="94"/>
         </scene>
