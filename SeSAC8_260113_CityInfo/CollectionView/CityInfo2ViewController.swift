@@ -48,7 +48,7 @@ final class CityInfo2ViewController: UIViewController {
         // Title
         navigationItem.title = "인기 도시"
         
-        // Left Item 
+        // Left Item
         let leftButton = UIButton(type: .system)
         leftButton.setImage(UIImage(systemName: "flame.fill"), for: .normal)
         leftButton.tintColor = .systemOrange
@@ -207,6 +207,13 @@ extension CityInfo2ViewController: UICollectionViewDataSource, UICollectionViewD
     
     @objc private func leftButtonTapped() {
         print(#function)
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let HotVC = storyboard.instantiateViewController(
+            withIdentifier: "HotViewController"
+        ) as? HotViewController else { return }
+        
+        navigationController?.pushViewController(HotVC, animated: true)
     }
 
     @objc private func rightButtonTapped() {

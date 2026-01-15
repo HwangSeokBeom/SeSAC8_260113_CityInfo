@@ -104,7 +104,7 @@
         <!--Hot View Controller-->
         <scene sceneID="JoA-tZ-ODd">
             <objects>
-                <viewController id="R6J-ac-vIR" customClass="HotViewController" customModule="SeSAC8_260113_CityInfo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HotViewController" id="R6J-ac-vIR" customClass="HotViewController" customModule="SeSAC8_260113_CityInfo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gls-zQ-AJH">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
