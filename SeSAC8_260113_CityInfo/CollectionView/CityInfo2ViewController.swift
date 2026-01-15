@@ -17,6 +17,7 @@ final class CityInfo2ViewController: UIViewController {
     private var filteredCities: [City] = []
     
     private let nicknameKey = "nickname"
+    private let segmentIndexKey = "cityFilterIndex"
     
     private var currentFilter: CityFilter {
         return CityFilter(rawValue: segmentedControl.selectedSegmentIndex) ?? .all
@@ -24,14 +25,14 @@ final class CityInfo2ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         collectionView.keyboardDismissMode = .onDrag
         
         collectionView.backgroundColor = .clear
         collectionView.dataSource = self
         collectionView.delegate   = self
         
-        // XIB 셀 등록 
+        // XIB 셀 등록
         let nib = UINib(nibName: CityInfo2CollectionViewCell.identifier, bundle: nil)
         collectionView.register(nib,
                                 forCellWithReuseIdentifier: CityInfo2CollectionViewCell.identifier)
@@ -72,7 +73,7 @@ final class CityInfo2ViewController: UIViewController {
         let leftButton = UIButton(type: .system)
         leftButton.setImage(UIImage(systemName: "flame.fill"), for: .normal)
         leftButton.tintColor = .systemOrange
-     
+        
         leftButton.addTarget(self, action: #selector(leftButtonTapped), for: .touchUpInside)
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: leftButton)
         
@@ -80,7 +81,7 @@ final class CityInfo2ViewController: UIViewController {
         let rightButton = UIButton(type: .system)
         rightButton.setImage(UIImage(systemName: "person.fill"), for: .normal)
         rightButton.tintColor = .black
-     
+        
         rightButton.addTarget(self, action: #selector(rightButtonTapped), for: .touchUpInside)
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: rightButton)
     }
@@ -95,23 +96,23 @@ final class CityInfo2ViewController: UIViewController {
         segmentedControl.layer.cornerRadius = segmentedControl.bounds.height / 2
         segmentedControl.layer.masksToBounds = true
         segmentedControl.removeAllSegments()
-        segmentedControl.removeAllSegments()
+        
         [CityFilter.all, .domestic, .international].forEach { filter in
             segmentedControl.insertSegment(withTitle: filter.title, at: filter.rawValue, animated: false)
         }
-        segmentedControl.selectedSegmentIndex = CityFilter.all.rawValue
+        
+        let savedIndex = UserDefaults.standard.integer(forKey: segmentIndexKey)
+        segmentedControl.selectedSegmentIndex = savedIndex
         
         segmentedControl.backgroundColor = UIColor.systemGray6
         segmentedControl.selectedSegmentTintColor = .white
         
-        // 기본 상태(선택 X) 글자 스타일
         let normalAttrs: [NSAttributedString.Key: Any] = [
             .foregroundColor: UIColor.darkGray,
             .font: UIFont.systemFont(ofSize: 14, weight: .regular)
         ]
         segmentedControl.setTitleTextAttributes(normalAttrs, for: .normal)
         
-        // 선택 상태 글자 스타일
         let selectedAttrs: [NSAttributedString.Key: Any] = [
             .foregroundColor: UIColor.black,
             .font: UIFont.systemFont(ofSize: 14, weight: .bold)
@@ -157,6 +158,7 @@ final class CityInfo2ViewController: UIViewController {
     }
     
     @IBAction func segmentedConrolClicked(_ sender: UISegmentedControl) {
+        UserDefaults.standard.set(sender.selectedSegmentIndex, forKey: segmentIndexKey)
         applyFilter()
         sender.resignFirstResponder()
     }
@@ -228,7 +230,7 @@ extension CityInfo2ViewController: UICollectionViewDataSource, UICollectionViewD
     @objc private func leftButtonTapped() {
         print(#function)
     }
-
+    
     @objc private func rightButtonTapped() {
         print(#function)
         
