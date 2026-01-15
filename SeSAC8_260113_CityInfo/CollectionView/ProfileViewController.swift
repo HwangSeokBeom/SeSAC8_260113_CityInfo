@@ -14,6 +14,8 @@ class ProfileViewController: UIViewController {
     @IBOutlet var userTextField: UITextField!
     @IBOutlet var onLabel: UILabel!
     
+    private let nicknameKey = "nickname"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -50,17 +52,21 @@ class ProfileViewController: UIViewController {
         doneButton.addTarget(self, action: #selector(doneButtonTapped), for: .touchUpInside)
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: doneButton)
     }
-    
-    // MARK: - UI
-    
+
     private func setupUI() {
         // "사용자 정보" 라벨
         userLabel.text = "사용자 정보"
         userLabel.font = .systemFont(ofSize: 13, weight: .semibold)
         userLabel.textColor = .secondaryLabel
         
+        let savedNickname = UserDefaults.standard.string(forKey: nicknameKey)
+        if let savedNickname, !savedNickname.isEmpty {
+            userTextField.text = savedNickname
+        } else {
+            userTextField.text = nil
+        }
+        
         // 닉네임 텍스트필드 (흰색 캡슐)
-        userTextField.text = "고래밥"
         userTextField.placeholder = ""
         userTextField.borderStyle = .none
         userTextField.backgroundColor = .white
@@ -83,6 +89,17 @@ class ProfileViewController: UIViewController {
     }
     
     @objc private func doneButtonTapped() {
+        let nickname = userTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+        let defaults = UserDefaults.standard
+        
+        if nickname.isEmpty {
+            // 비어 있으면 기존 값 삭제 → CityInfo2에서 "인기 도시"가 뜨도록
+            defaults.removeObject(forKey: nicknameKey)
+        } else {
+            // 값 있으면 저장 / 수정
+            defaults.set(nickname, forKey: nicknameKey)
+        }
+        
         navigationController?.popViewController(animated: true)
     }
     

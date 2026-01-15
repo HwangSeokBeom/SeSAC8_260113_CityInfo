@@ -16,6 +16,8 @@ final class CityInfo2ViewController: UIViewController {
     private let cityInfo = CityInfo()
     private var filteredCities: [City] = []
     
+    private let nicknameKey = "nickname"
+    
     private var currentFilter: CityFilter {
         return CityFilter(rawValue: segmentedControl.selectedSegmentIndex) ?? .all
     }
@@ -42,6 +44,24 @@ final class CityInfo2ViewController: UIViewController {
         setupNavigationItems()
         setupUI()
         applyFilter()
+        updateNavigationTitle()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        // 프로필에서 돌아올 때마다 타이틀 최신화
+        updateNavigationTitle()
+    }
+    
+    private func updateNavigationTitle() {
+        let nickname = UserDefaults.standard.string(forKey: nicknameKey)?
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        if let name = nickname, !name.isEmpty {
+            navigationItem.title = "\(name)님 환영합니다!"
+        } else {
+            navigationItem.title = "인기 도시"
+        }
     }
     
     private func setupNavigationItems() {
