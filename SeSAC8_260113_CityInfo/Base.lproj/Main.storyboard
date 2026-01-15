@@ -174,12 +174,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="avf-Tf-jx8">
-                                <rect key="frame" x="20" y="182" width="353" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zQt-Tp-gHq">
                                 <rect key="frame" x="0.0" y="213" width="393" height="1"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -238,29 +232,27 @@
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="1yc-FH-ojE" firstAttribute="trailing" secondItem="V73-Ks-ro7" secondAttribute="trailing" constant="20" id="18X-sx-awD"/>
-                            <constraint firstItem="avf-Tf-jx8" firstAttribute="top" secondItem="1yc-FH-ojE" secondAttribute="top" constant="10" id="3nQ-TF-YNe"/>
                             <constraint firstItem="1yc-FH-ojE" firstAttribute="trailing" secondItem="zQt-Tp-gHq" secondAttribute="trailing" id="7EW-nB-eha"/>
                             <constraint firstItem="yJm-4F-PtW" firstAttribute="leading" secondItem="1yc-FH-ojE" secondAttribute="leading" constant="20" id="Anf-tv-R0U"/>
                             <constraint firstItem="zQt-Tp-gHq" firstAttribute="leading" secondItem="1yc-FH-ojE" secondAttribute="leading" id="Bsj-tu-2T5"/>
                             <constraint firstItem="fPW-Jm-QrA" firstAttribute="top" secondItem="V73-Ks-ro7" secondAttribute="bottom" constant="10" id="E7N-46-XbV"/>
                             <constraint firstItem="V73-Ks-ro7" firstAttribute="top" secondItem="yJm-4F-PtW" secondAttribute="bottom" constant="10" id="FQc-fY-WPd"/>
                             <constraint firstItem="yJm-4F-PtW" firstAttribute="top" secondItem="zQt-Tp-gHq" secondAttribute="bottom" constant="10" id="K2Y-1K-B0W"/>
-                            <constraint firstItem="1yc-FH-ojE" firstAttribute="trailing" secondItem="avf-Tf-jx8" secondAttribute="trailing" constant="20" id="PIM-xR-3ut"/>
+                            <constraint firstItem="zQt-Tp-gHq" firstAttribute="top" secondItem="1yc-FH-ojE" secondAttribute="top" constant="41" id="X22-m9-ecc"/>
                             <constraint firstItem="fPW-Jm-QrA" firstAttribute="leading" secondItem="1yc-FH-ojE" secondAttribute="leading" id="beS-eH-zUH"/>
-                            <constraint firstItem="zQt-Tp-gHq" firstAttribute="top" secondItem="avf-Tf-jx8" secondAttribute="bottom" constant="10" id="fYO-xv-aHi"/>
                             <constraint firstItem="1yc-FH-ojE" firstAttribute="trailing" secondItem="yJm-4F-PtW" secondAttribute="trailing" constant="20" id="q6y-fz-46i"/>
                             <constraint firstItem="V73-Ks-ro7" firstAttribute="leading" secondItem="1yc-FH-ojE" secondAttribute="leading" constant="20" id="qKb-VO-nmh"/>
                             <constraint firstItem="1yc-FH-ojE" firstAttribute="trailing" secondItem="fPW-Jm-QrA" secondAttribute="trailing" id="tq3-sF-UXa"/>
                             <constraint firstItem="1yc-FH-ojE" firstAttribute="bottom" secondItem="fPW-Jm-QrA" secondAttribute="bottom" id="wLw-o0-CAe"/>
-                            <constraint firstItem="avf-Tf-jx8" firstAttribute="leading" secondItem="1yc-FH-ojE" secondAttribute="leading" constant="20" id="y7K-I2-Vbb"/>
                         </constraints>
                     </view>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" id="soV-1e-JcT"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="collectionView" destination="fPW-Jm-QrA" id="raU-H4-78B"/>
                         <outlet property="searchTextField" destination="yJm-4F-PtW" id="WFS-iO-B3S"/>
                         <outlet property="segmentedControl" destination="V73-Ks-ro7" id="lS8-TD-hob"/>
-                        <outlet property="titleLabel" destination="avf-Tf-jx8" id="cVh-w9-fOH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fdJ-0d-Ikm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

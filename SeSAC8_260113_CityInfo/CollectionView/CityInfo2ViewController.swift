@@ -9,7 +9,6 @@ import UIKit
 
 final class CityInfo2ViewController: UIViewController {
     
-    @IBOutlet var titleLabel: UILabel!
     @IBOutlet var searchTextField: UITextField!
     @IBOutlet var segmentedControl: UISegmentedControl!
     @IBOutlet var collectionView: UICollectionView!
@@ -40,21 +39,33 @@ final class CityInfo2ViewController: UIViewController {
             layout.minimumInteritemSpacing = 0
             layout.sectionInset = .zero
         }
-        
+        setupNavigationItems()
         setupUI()
         applyFilter()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.isNavigationBarHidden = true
+    private func setupNavigationItems() {
+        // Title
+        navigationItem.title = "인기 도시"
+        
+        // Left Item 
+        let leftButton = UIButton(type: .system)
+        leftButton.setImage(UIImage(systemName: "flame.fill"), for: .normal)
+        leftButton.tintColor = .systemOrange
+     
+        leftButton.addTarget(self, action: #selector(leftButtonTapped), for: .touchUpInside)
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: leftButton)
+        
+        // Right Item
+        let rightButton = UIButton(type: .system)
+        rightButton.setImage(UIImage(systemName: "person.fill"), for: .normal)
+        rightButton.tintColor = .black
+     
+        rightButton.addTarget(self, action: #selector(rightButtonTapped), for: .touchUpInside)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: rightButton)
     }
     
     private func setupUI () {
-        
-        titleLabel.text = "인기 도시"
-        titleLabel.textAlignment = .center
-        titleLabel.font = .systemFont(ofSize: 18, weight: .bold)
         
         searchTextField.placeholder = "도시명을 검색하세요"
         searchTextField.backgroundColor = UIColor.systemGray6
@@ -192,5 +203,13 @@ extension CityInfo2ViewController: UICollectionViewDataSource, UICollectionViewD
                 present(detailVC, animated: true)
             }
         }
+    }
+    
+    @objc private func leftButtonTapped() {
+        print(#function)
+    }
+
+    @objc private func rightButtonTapped() {
+        print(#function)
     }
 }
