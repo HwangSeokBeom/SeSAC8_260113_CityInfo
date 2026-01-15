@@ -207,16 +207,16 @@ extension CityInfo2ViewController: UICollectionViewDataSource, UICollectionViewD
     
     @objc private func leftButtonTapped() {
         print(#function)
-        
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        guard let HotVC = storyboard.instantiateViewController(
-            withIdentifier: "HotViewController"
-        ) as? HotViewController else { return }
-        
-        navigationController?.pushViewController(HotVC, animated: true)
     }
 
     @objc private func rightButtonTapped() {
         print(#function)
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let ProfileVC = storyboard.instantiateViewController(
+            withIdentifier: "ProfileViewController"
+        ) as? ProfileViewController else { return }
+        
+        navigationController?.pushViewController(ProfileVC, animated: true)
     }
 }

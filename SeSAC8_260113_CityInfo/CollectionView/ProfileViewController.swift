@@ -1,5 +1,5 @@
 //
-//  HotViewController.swift
+//  ProfileViewController.swift
 //  SeSAC8_260113_CityInfo
 //
 //  Created by Hwangseokbeom on 1/15/26.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HotViewController: UIViewController {
+class ProfileViewController: UIViewController {
     
     
     @IBOutlet var userLabel: UILabel!
