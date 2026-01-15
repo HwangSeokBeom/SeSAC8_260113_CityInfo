@@ -101,6 +101,71 @@
             </objects>
             <point key="canvasLocation" x="-48" y="94"/>
         </scene>
+        <!--Hot View Controller-->
+        <scene sceneID="JoA-tZ-ODd">
+            <objects>
+                <viewController id="R6J-ac-vIR" customClass="HotViewController" customModule="SeSAC8_260113_CityInfo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gls-zQ-AJH">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dmf-f8-lfm">
+                                <rect key="frame" x="20" y="148" width="353" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bEc-9i-ImQ">
+                                <rect key="frame" x="20" y="179" width="353" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="ZLF-gX-hXY"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="textfieldDidEndOnExit:" destination="R6J-ac-vIR" eventType="editingDidEndOnExit" id="BOj-gl-trh"/>
+                                </connections>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fot-xf-aeX">
+                                <rect key="frame" x="20" y="229" width="353" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Dv6-iW-daT"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="fot-xf-aeX" firstAttribute="leading" secondItem="Dv6-iW-daT" secondAttribute="leading" constant="20" id="8my-aF-Uyf"/>
+                            <constraint firstItem="Dv6-iW-daT" firstAttribute="trailing" secondItem="Dmf-f8-lfm" secondAttribute="trailing" constant="20" id="GAi-2V-H3M"/>
+                            <constraint firstItem="bEc-9i-ImQ" firstAttribute="leading" secondItem="Dv6-iW-daT" secondAttribute="leading" constant="20" id="Rw4-IP-hpi"/>
+                            <constraint firstItem="Dmf-f8-lfm" firstAttribute="leading" secondItem="Dv6-iW-daT" secondAttribute="leading" constant="20" id="Vx2-8L-c0t"/>
+                            <constraint firstItem="bEc-9i-ImQ" firstAttribute="top" secondItem="Dmf-f8-lfm" secondAttribute="bottom" constant="10" id="Wd0-39-B3t"/>
+                            <constraint firstItem="Dmf-f8-lfm" firstAttribute="top" secondItem="Dv6-iW-daT" secondAttribute="top" constant="30" id="eOJ-3k-4qE"/>
+                            <constraint firstItem="Dv6-iW-daT" firstAttribute="trailing" secondItem="bEc-9i-ImQ" secondAttribute="trailing" constant="20" id="lVq-ba-TOW"/>
+                            <constraint firstItem="fot-xf-aeX" firstAttribute="top" secondItem="bEc-9i-ImQ" secondAttribute="bottom" constant="10" id="t6K-cG-Y2K"/>
+                            <constraint firstItem="Dv6-iW-daT" firstAttribute="trailing" secondItem="fot-xf-aeX" secondAttribute="trailing" constant="20" id="zzV-NH-XCP"/>
+                        </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="yxO-t4-uwA" appends="YES" id="cKL-L1-xOG"/>
+                        </connections>
+                    </view>
+                    <connections>
+                        <outlet property="onLabel" destination="fot-xf-aeX" id="Klv-QG-FTA"/>
+                        <outlet property="userLabel" destination="Dmf-f8-lfm" id="iky-LF-vqS"/>
+                        <outlet property="userTextField" destination="bEc-9i-ImQ" id="fZb-Zb-qTO"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2cl-Ol-9u0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="yxO-t4-uwA">
+                    <connections>
+                        <action selector="tapGestureRecognizer:" destination="R6J-ac-vIR" id="41q-Yd-CwL"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="1724" y="-551"/>
+        </scene>
         <!--City Info2 View Controller-->
         <scene sceneID="Fzg-0V-ScN">
             <objects>
@@ -266,7 +331,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TgQ-UT-oCn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2498.4732824427479" y="93.661971830985919"/>
+            <point key="canvasLocation" x="2518" y="94"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="hsT-cw-qTq">
